@@ -11,7 +11,7 @@ http.createServer((request, response) => {
     if (err) {
       console.log(err);
     } else {
-      console.log('Added to log.');
+      console.log('Added to log');
     }
   });
 
