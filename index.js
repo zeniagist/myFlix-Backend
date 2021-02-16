@@ -6,17 +6,55 @@ const  app = express();
 // JSON movie list
 let movieList = [
     {
-        title: 'Harry Potter and the Sorcerer\'s Stone',
-        author: 'J.K. Rowling'
-      },
-      {
-        title: 'Lord of the Rings',
-        author: 'J.R.R. Tolkien'
-      },
-      {
-        title: 'Twilight',
-        author: 'Stephanie Meyer'
-      }
+        movie: 'Timer',
+        director: 'Jac Schaeffer',
+        genre: 'Romatic Comedy'
+    },
+    {
+        movie: 'Baby Driver',
+        director: 'Edgar Wright',
+        genre: 'Action'
+    },
+    {
+        movie: 'Frequencies',
+        director: 'Darren Paul Fisher',
+        genre: 'Mystery'
+    },
+    {
+        movie: 'The Grand Budapest Hotel',
+        director: 'Wes Anderson',
+        genre: 'Adventure'
+    },
+    {
+        movie: 'Incident in a Ghostland',
+        director: 'Pascal Laugier',
+        genre: 'Horror'
+    },
+    {
+        movie: 'What We Do in the Shadows',
+        director: 'Jermaine Clement',
+        genre: 'Comedy'
+    },
+    {
+        movie: 'It Follows',
+        director: 'David Robert Mitchell',
+        genre: 'Horror'
+    },
+    {
+        movie: 'La La Land',
+        director: 'Damien Chazelle',
+        genre: 'Muscial Comedy'
+    },
+    {
+        movie: 'Everything Everything',
+        director: 'Stella Meghie',
+        genre: 'Drama'
+    },
+    {
+        movie: 'The Call',
+        director: 'Chung-Hyun Lee',
+        genre: 'Horror'
+    }
 ];
 
 // GET requests
