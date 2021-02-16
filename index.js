@@ -62,7 +62,7 @@ app.get('/', (req, res) => {
     res.send('<h1>Welcome to the Movie Database</h1>');
 } );
 
-// express static
+// serves documentation.html
 app.use(express.static('public'));
 
 // Morgan middleware library
