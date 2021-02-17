@@ -89,27 +89,27 @@ app.get('/movies/directors/name', (req, res) => {
 });
 
 // POST new users to register
-app.get('/users', (req, res) => {
+app.post('/users', (req, res) => {
     res.send('Allow new users to register');
 });
 
 // PUT updated to username
-app.get('/users/username', (req, res) => {
+app.put('/users/username', (req, res) => {
     res.send('Allow users to update their user info (username)');
 });
 
 // POST movie to user's favorites list
-app.get('/users/username/movies/movieName', (req, res) => {
+app.post('/users/username/movies/movieName', (req, res) => {
     res.send('Allow users to add a movie to their list of favorites (showing only a text that a movie has been added)');
 });
 
 // DELETE movie from user's favorites list
-app.get('/users/username/movies/movieName', (req, res) => {
+app.delete('/users/username/movies/movieName', (req, res) => {
     res.send('Allow users to remove a movie from their list of favorites (showing only a text that a movie has been removed)');
 });
 
 // DELETE a user from registration database
-app.get('/users/username', (req, res) => {
+app.delete('/users/username', (req, res) => {
     res.send('Allow existing users to deregister (showing only a text that a user email has been removed)');
 });
 
