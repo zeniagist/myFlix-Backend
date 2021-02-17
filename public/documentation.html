@@ -23,57 +23,173 @@
   </div>
 
   <div>
+    
     <table border="1">
-        <caption>Documentation</caption>
       <tr>
+        <caption><h3>Documentation</h3></caption>
         <th>Request</th>
         <th>URL</th>
         <th>HTTP Method</th>
+        <th>Query Parameters</th>
+        <th>Request Format</th>
+        <th>Request Example</th>
+        <th>Response Format</th>
+        <th>Response Example</th>
       </tr>
       <tr>
         <td>Return a list of ALL movies to the user</td>
         <td>/movies</td>
-        <td>GET</td>        
+        <td>GET</td>   
+        <td>None</td>
+        <td>None</td>
+        <td>/movies</td>
+        <td>JSON</td>  
+        <td>
+          {<br>
+            Title:<br>
+            Image:<br>
+            Genre:<br>      
+            Description:<br>
+            Director:
+            <br>}
+        </td>     
       </tr>
       <tr>
         <td>Return data (description, genre, director, image URL, whether it’s featured or not) about a single movie by title to the user</td>
         <td>/movies/title</td>
-        <td>GET</td>        
+        <td>GET</td>      
+        <td>Underscores for spaces</td>
+        <td>None</td>
+        <td>/movies/what_we_do_in_the_shadows
+        <td>JSON</td>  
+        <td>
+          {<br>
+          Title:<br>
+          Image:<br>
+          Genre:<br>      
+          Description:<br>
+          Director:
+          <br>}
+        </td>
       <tr>
         <td>Return data about a genre (description) by name/title (e.g., “Thriller”)</td>
         <td>/movies/genres/title</td>
-        <td>GET</td>        
+        <td>GET</td>      
+        <td>Underscores for spaces</td>
+        <td>None</td>
+        <td>/movies/Genres/what_we_do_in_the_shadows</td>
+        <td>JSON</td>
+        <td>{<br>Genre Description:<br>}</td>  
       </tr>
       <tr>
         <td>Return data about a director (bio, birth year, death year) by name</td>
         <td>/movies/directors/name</td>
-        <td>GET</td>        
+        <td>GET</td>      
+        <td>Underscores for spaces</td>
+        <td>None</td>
+        <td>/movies/directors/Jermaine_Clement</td>
+        <td>JSON</td>
+        <td>
+          {<br>
+            Director Name:<br>
+            Years: Birth Year - Death Year (if still alive this will be NULL)<br>
+            Movies Directed:<br>
+          <br>}
+        </td>        
       </tr>
       <tr>
         <td>Allow new users to register</td>
         <td>/users</td>
         <td>POST</td>
+        <td>None</td>
+        <td>JSON</td>
+        <td>
+          {<br>
+            Username: username<br>
+            Password: password<br>
+            Email: email@email.com<br>
+          <br>}
+        </td>
+        <td>JSON</td>
+        <td>
+          {<br>
+            FavoriteMovies:<br>
+            userID: <br>
+            Username: username<br>
+            Password: password<br>
+            Email: email@email.com<br>
+            <br>}
+        </td>      
       </tr>
       <tr>
         <td>Allow users to update their user info (username)</td>
         <td>/users/username</td>
         <td>PUT</td>
-        </tr>
+        <td>None</td>
+        <td>JSON</td>
+        <td>
+          {<br>
+            Username: username<br>
+            Password: password<br>
+            Email: email@email.com<br>
+          <br>}
+        </td>
+        <td>JSON</td>
+        <td>
+          {<br>
+            Favorite Movies:<br>
+            userID: <br>
+            Username: username<br>
+            Password: password<br>
+            Email: email@email.com<br>
+            <br>}
+        </td>      
+      </tr>
       <tr>
         <td>Allow users to add a movie to their list of favorites (showing only a text that a movie has been added)</td>
         <td>/users/username/movies/movieName</td>
         <td>POST</td>
+        <td>None</td>
+        <td>JSON</td>
+        <td>{<br>movieID<br>}</td>
+        <td>Message</td>
+        <td>          
+          {<br>           
+            List of Favorite Movies:<br>
+          <br>}
+        </td>  
         </tr>
       <tr>
         <td>Allow users to remove a movie from their list of favorites (showing only a text that a movie has been removed)</td>
         <td>/users/username/movies/movieName</td>
         <td>DELETE</td>
+        <td>None</td>
+        <td>None</td>
+        <td>/users/username/movies/movieID</td>
+        <td>Message</td>
+        <td>          
+          {<br>           
+            MovieID was deleted from Favorite Movies<br>
+            click here to UNDO<br>
+            click here to see Favorite Movies List<br>
+          <br>}
+        </td>  
     </tr>
       <tr>
         <td>Allow existing users to deregister (showing only a text that a user email has been removed)</td>
         <td>/users/username</td>
         <td>DELETE</td>
-        </tr>
+        <td>None</td>
+        <td>None</td>
+        <td>/users/username</td>
+        <td>Message</td>
+        <td>
+          {<br>
+            username was successfully deleted <br>
+            Go to Homepage <br>
+          <br>}
+        </td>
+      </tr>
     </table>
   </div>
 
