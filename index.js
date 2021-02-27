@@ -8,13 +8,13 @@ const  app = express();
 app.use(bodyParser.json());
 
 // require mongoose
-const mongoose = require('mongoose');
-const Models = require('./models.js');
+// const mongoose = require('mongoose');
+// const Models = require('./models.js');
 
-const Movies = Models.Movie;
-const Users = Models.User;
+// const Movies = Models.Movie;
+// const Users = Models.User;
 
-mongoose.connect('mongodb://localhost:27017/myFlixDB', { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect('mongodb://localhost:27017/myFlixDB', { useNewUrlParser: true, useUnifiedTopology: true });
 
 // JSON movie list
 let movieList = [
@@ -110,31 +110,37 @@ app.get('/movies/directors/name', (req, res) => {
   Email: String,
   Birthday: Date
 }*/
+// app.post('/users', (req, res) => {
+//     Users.findOne({ Username: req.body.Username })
+//       .then((user) => {
+//         if (user) {
+//           return res.status(400).send(req.body.Username + 'already exists');
+//         } else {
+//           Users
+//             .create({
+//               Username: req.body.Username,
+//               Password: req.body.Password,
+//               Email: req.body.Email,
+//               Birthday: req.body.Birthday
+//             })
+//             .then((user) =>{res.status(201).json(user) })
+//           .catch((error) => {
+//             console.error(error);
+//             res.status(500).send('Error: ' + error);
+//           })
+//         }
+//       })
+//       .catch((error) => {
+//         console.error(error);
+//         res.status(500).send('Error: ' + error);
+//       });
+//   });
+
+// POST new users to register
 app.post('/users', (req, res) => {
-    Users.findOne({ Username: req.body.Username })
-      .then((user) => {
-        if (user) {
-          return res.status(400).send(req.body.Username + 'already exists');
-        } else {
-          Users
-            .create({
-              Username: req.body.Username,
-              Password: req.body.Password,
-              Email: req.body.Email,
-              Birthday: req.body.Birthday
-            })
-            .then((user) =>{res.status(201).json(user) })
-          .catch((error) => {
-            console.error(error);
-            res.status(500).send('Error: ' + error);
-          })
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-        res.status(500).send('Error: ' + error);
-      });
-  });
+    res.send('Allow new users to register');
+});
+
 
 // PUT updated to username
 app.put('/users/username', (req, res) => {
@@ -157,5 +163,5 @@ app.delete('/users/username', (req, res) => {
 });
 
 // listen for requests
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
