@@ -1,7 +1,13 @@
+// initialize body parser
+const bodyParser = require('body-parser');
+
+
+
 // initialize express.js
 const express = require('express'),
     morgan = require('morgan');
 const  app = express();
+app.use(bodyParser.json());
 
 // require mongoose
 const mongoose = require('mongoose');
@@ -17,7 +23,7 @@ let movieList = [
     {
         movie: 'Timer',
         director: 'Jac Schaeffer',
-        genre: 'Romatic Comedy'
+        genre: 'Comedy'
     },
     {
         movie: 'Baby Driver',
@@ -27,7 +33,7 @@ let movieList = [
     {
         movie: 'Frequencies',
         director: 'Darren Paul Fisher',
-        genre: 'Mystery'
+        genre: 'Thriller'
     },
     {
         movie: 'The Grand Budapest Hotel',
@@ -35,8 +41,8 @@ let movieList = [
         genre: 'Adventure'
     },
     {
-        movie: 'Incident in a Ghostland',
-        director: 'Pascal Laugier',
+        movie: 'The Wretched',
+        director: 'Brett Piercer',
         genre: 'Horror'
     },
     {
@@ -50,19 +56,19 @@ let movieList = [
         genre: 'Horror'
     },
     {
-        movie: 'La La Land',
-        director: 'Damien Chazelle',
-        genre: 'Muscial Comedy'
+        movie: 'The Lobster',
+        director: 'Yorgos Lanthimos',
+        genre: 'Comedy'
     },
     {
-        movie: 'Everything Everything',
-        director: 'Stella Meghie',
-        genre: 'Drama'
+        movie: 'Inheritance',
+        director: 'Vaughn Stein',
+        genre: 'Thriller'
     },
     {
-        movie: 'The Call',
-        director: 'Chung-Hyun Lee',
-        genre: 'Horror'
+        movie: 'Fantastic Mr. Fox',
+        director: 'Wes Anderson',
+        genre: 'Comedy'
     }
 ];
 
