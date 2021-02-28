@@ -1,3 +1,5 @@
+// if sername and password in the body of the request exist in the database
+
 const jwtSecret = 'your_jwt_secret'; // This has to be the same key used in the JWTStrategy
 
 const jwt = require('jsonwebtoken'),
@@ -5,7 +7,7 @@ const jwt = require('jsonwebtoken'),
 
 require('./passport'); // Your local passport file
 
-
+// create a JWT based on the username and password
 let generateJWTToken = (user) => {
   return jwt.sign(user, jwtSecret, {
     subject: user.Username, // This is the username you’re encoding in the JWT

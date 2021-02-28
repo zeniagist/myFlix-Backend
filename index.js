@@ -7,7 +7,7 @@ const express = require('express'),
 const  app = express();
 app.use(bodyParser.json());
 
-// require mongoose
+// initialize mongoose
 const mongoose = require('mongoose');
 const Models = require('./models.js');
 
@@ -15,6 +15,11 @@ const Movies = Models.Movie;
 const Users = Models.User;
 
 mongoose.connect('mongodb://localhost:27017/myFlixDB', { useNewUrlParser: true, useUnifiedTopology: true });
+
+// initialize passport
+let auth = require('./auth')(app);
+const passport = require('passport');
+require('./passport');
 
 // GET requests
 app.get('/', (req, res) => {
