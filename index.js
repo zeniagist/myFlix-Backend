@@ -44,7 +44,7 @@ require('./passport');
 
 // GET requests
 app.get('/', (req, res) => {
-  let responseText = 'Welcome to my app!';
+  let responseText = 'Welcome to MovieFlix!';
   res.send(responseText);
 });
 
