@@ -1,68 +1,55 @@
-// initialize body parser
-const bodyParser = require('body-parser');
-
-// initialize express.js
 const express = require('express'),
-  morgan = require('morgan');
-const app = express();
-app.use(bodyParser.json());
+  bodyParser = require('body-parser'),
+  morgan = require('morgan'),
+  mongoose = require('mongoose'),
+  Models = require('./models');
 
-// initialize mongoose
-const mongoose = require('mongoose');
-const Models = require('./models.js');
+const cors = require('cors');
+const { check, validationResult } = require('express-validator');
+const passport = require('passport');
+require('./passport')
 
 const Movies = Models.Movie;
 const Users = Models.User;
+const app = express();
 
-// mongoose.connect('mongodb://localhost:27017/myFlixDB', { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect('mongodb://localhost:27017/myFlixDB', { useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
-// initialize passport
+//Middleware functions
+let allowedOrigins = ['http://localhost:8080', 'http://localhost:1234'];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      //This occurs if the requesting origin isn't found on the list of allowed origins
+      let message = 'The CORS policy for this application doesn\'t allow access from origin ' + origin;
+      return callback(new Error(message), false);
+    }
+    return callback(null, true);
+  }
+}));
+
+app.use(morgan('common'));
+app.use(express.static('public'));
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('You done messed something up!');
+});
+app.use(bodyParser.json());
+
 let auth = require('./auth')(app);
-const passport = require('passport');
 require('./passport');
-
-// initialize express validator
-const { check, validationResult } = require('express-validator');
-
-// initialize CORS
-const cors = require('cors');
-
-// let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'http://localhost:1234', '*'];
-
-// app.use(cors({
-//   origin: (origin, callback) => {
-//     if (!origin) return callback(null, true);
-//     if (allowedOrigins.indexOf(origin) === -1) { // If a specific origin isn’t found on the list of allowed origins
-//       let message = 'The CORS policy for this application doesn’t allow access from origin ' + origin;
-//       return callback(new Error(message), false);
-//     }
-//     return callback(null, true);
-//   }
-// }));
-
-app.use(cors())
-
-app.get('/products/:id', function (req, res, next) {
-  res.json({ msg: 'This is CORS-enabled for all origins!' })
-})
-
-app.listen(80, function () {
-  console.log('CORS-enabled web server listening on port 80')
-})
 
 // GET requests
 app.get('/', (req, res) => {
-  res.send('<h1>Welcome to the Movie Database</h1>');
+  let responseText = 'Welcome to my app!';
+  res.send(responseText);
 });
 
-// serves documentation.html
-app.use(express.static('public'));
-
-app.use(morgan('common'));
-
 // 1. GET all movies
-app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get('/movies', (req, res) => {
   Movies.find()
     .then((movies) => {
       res.status(200).json(movies);
