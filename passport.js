@@ -1,4 +1,3 @@
-// initiliaze passport
 const passport = require('passport'),
   LocalStrategy = require('passport-local').Strategy,
   Models = require('./models.js'),
@@ -8,6 +7,7 @@ let Users = Models.User,
   JWTStrategy = passportJWT.Strategy,
   ExtractJWT = passportJWT.ExtractJwt;
 
+//defines basic HTTP authentication for login requests, checks mongoose for username, not password (yet)
 passport.use(new LocalStrategy({
   usernameField: 'Username',
   passwordField: 'Password'
@@ -20,24 +20,24 @@ passport.use(new LocalStrategy({
     }
 
     if (!user) {
-      console.log('incorrect username');
-      return callback(null, false, {message: 'Incorrect username or password.'});
+      console.log('Incorrect username.');
+      return callback(null, false, { message: 'Incorrect username.' });
     }
 
-    // validate hashed password
     if (!user.validatePassword(password)) {
-      console.log('incorrect password');
-      return callback(null, false, {message: 'Incorrect password.'});
+      console.log('Incorrect password.');
+      return callback(null, false, { message: 'Incorrect password.' });
     }
 
-    console.log('finished');
+    console.log('Finished');
     return callback(null, user);
   });
 }));
 
 passport.use(new JWTStrategy({
+  //JWT extracted from header of HTTP request
   jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
-  secretOrKey: 'your_jwt_secret'
+  secretOrKey: process.env.JWT_SECRET
 }, (jwtPayload, callback) => {
   return Users.findById(jwtPayload._id)
     .then((user) => {
