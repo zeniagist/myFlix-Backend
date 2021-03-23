@@ -208,19 +208,18 @@ app.post('/users/:Username/Movies/:MovieID', passport.authenticate('jwt', { sess
 
 // 10. DELETE movie from user's favorites list
 app.delete('/users/:Username/Movies/:MovieID', passport.authenticate('jwt', { session: false }), (req, res) => {
-  Users.findOneAndUpdate(
-    { Username: req.params.Username },
-    { $pull: { FavoriteMovies: req.params.MovieID } },
-    { new: true },
-    function (err, updatedUser) {
-      if (err) {
-        console.error(err);
-        res.status(500).send("Error: " + err);
+  Users.findOneAndRemove({ FavoriteMovies: req.params.MovieID })
+    .then((user) => {
+      if (!user) {
+        res.status(400).send(req.params.MovieID + ' was not found');
       } else {
-        res.json(updatedUser);
+        res.status(200).send(req.params.MovieID + ' was deleted.');
       }
-    }
-  );
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
 });
 
 // 11. DELETE a user from database by username
