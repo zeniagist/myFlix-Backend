@@ -14,7 +14,8 @@ const Users = Models.User;
 const app = express();
 
 // mongoose.connect('mongodb://localhost:27017/myFlixDB', { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb+srv://zeniagist:sfrKxs92nUMBRV4@projectdb.crkfx.mongodb.net/myFlixDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
 
 //Middleware functions
 // let allowedOrigins = ['http://localhost:8080', 'http://localhost:1234', 'http://localhost:60216'];
