@@ -169,61 +169,35 @@ app.post('/users',
 
 
 // 8. PUT updated user info
-app.put(
-  "/users/:Username",
-  passport.authenticate("jwt", { session: false }),
-  [
-    check('Username', 'Username is required').isLength({ min: 5 }),
-    check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
-  ],
-  (req, res) => {
-    let errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-    let hashedPassword = Users.hashPassword(req.body.Password);
-    Users.findOneAndUpdate(
-      { Username: req.params.Username },
-      {
-        $set: {
-          Username: req.body.Username,
-          Password: hashedPassword,
-          Email: req.body.Email,
-          Birthday: req.body.Birthday
-        }
-      },
-      { new: true }, // This line makes sure that the updated document is returned
-      (error, updatedUser) => {
-        if (error) {
-          console.error(error);
-          res.status(500).send("Error: " + error);
-        } else {
-          res.json(updatedUser);
-        }
-      }
-    );
+app.put('/users/:Username', passport.authenticate('jwt', { session: false }), (req, res) => {
+  let errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() });
   }
-);
-// app.put('/users/:Username', passport.authenticate('jwt', { session: false }), (req, res) => {
-//   Users.findOneAndUpdate({ Username: req.params.Username }, {
-//     $set:
-//     {
-//       Username: req.body.Username,
-//       Password: req.body.Password,
-//       Email: req.body.Email,
-//       Birthday: req.body.Birthday
-//     }
-//   },
-//     { new: true }, // This line makes sure that the updated document is returned
-//     (err, updatedUser) => {
-//       if (err) {
-//         console.error(err);
-//         res.status(500).send('Error: ' + err);
-//       } else {
-//         res.json(updatedUser);
-//       }
-//     });
-// });
+
+  // define hashed password
+  let hashedPassword = Users.hashPassword(req.body.Password);
+
+  Users.findOneAndUpdate({ Username: req.params.Username }, {
+    $set:
+    {
+      Username: req.body.Username,
+      Password: hashedPassword,
+      Email: req.body.Email,
+      Birthday: req.body.Birthday
+    }
+  },
+    { new: true }, // This line makes sure that the updated document is returned
+    (err, updatedUser) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send('Error: ' + err);
+      } else {
+        res.json(updatedUser);
+      }
+    });
+});
 
 // 9. POST add movie to user's favorites list
 app.post('/users/:Username/Movies/:MovieID', passport.authenticate('jwt', { session: false }), (req, res) => {
