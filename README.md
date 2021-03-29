@@ -10,9 +10,7 @@ Front-end React-Redux repo is [here](https://github.com/zeniagist/myflix-client)
 
 Make a free account today and view the website [here](https://my-fight-flix.netlify.app/).
 
-### API Documentation
-
-## Core Back-end Technologies
+## Core Back-End Technologies
 
 - MongoDB
 - Express.js
@@ -21,7 +19,7 @@ Make a free account today and view the website [here](https://my-fight-flix.netl
 - Heroku
 - NPM
 
-### Authentication
+## Authentication
 
 The app uses JWT (token-based) authentication with the help of passport.js.
 
