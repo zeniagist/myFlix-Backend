@@ -1,6 +1,6 @@
 # myFlix Backend
 
-myFlix is the backend of myFlix MERN stack app, a RESTful API that  receives information about movies, directors, and genres from Mongoosedb using jwt-authentication. 
+Backend of myFlix MERN stack app, a RESTful API that  receives information about movies, directors, and genres from Mongoosedb using jwt-authentication. 
 
 Back-end full documentation [here](https://my-flix-zag.herokuapp.com/documentation.html).
 
