@@ -2,11 +2,9 @@
 
 Backend of myFlix MERN stack app, a RESTful API that  receives information about movies, directors, and genres from Mongoosedb using jwt-authentication. 
 
-Back-end full documentation [here](https://my-flix-zag.herokuapp.com/documentation.html).
+View the website built with React click [here](https://my-flix-zag.netlify.app/).
 
-Front-end React-Redux repo is [here](https://github.com/zeniagist/myflix-client).
-
-Make a free account today and view the website [here](https://my-fight-flix.netlify.app/).
+View the website built with Angular click [here](https://zeniagist.github.io/filmFlix/).
 
 ## Core Back-End Technologies
 
