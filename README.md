@@ -4,7 +4,7 @@ Backend of myFlix MERN stack app, a RESTful API that  receives information about
 
 View the website built with React [here](https://my-flix-zag.netlify.app/).
 
-View the website built with Angular [here](https://zeniagist.github.io/filmFlix/).
+View the website built with Angular [here](https://zeniagist.github.io/filmflix/).
 
 ## Core Back-End Technologies
 
